@@ -24,7 +24,16 @@ class VideosBloc implements BlocBase {
   }
 
   void _search(String search) async {
-    videos = await api.search(search);
+    if(search != null){
+      // Se faz uma outra pesquisa depois de já ter pesquisado outra coisa, ele vai desfazer da lista que já tem primeiro.
+      _videosController.sink.add([]);
+      videos = await api.search(search);
+    }
+    else
+      {
+        api.nextPage();
+      }
+    videos += await api.search(search);
 
     _videosController.sink.add(videos);
   }
