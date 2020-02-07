@@ -12,7 +12,7 @@ class Api {
       // $search é 'nome' que estamos procurando, type = video, e a sua chave para poder usar
         "https://www.googleapis.com/youtube/v3/search?part=snippet&q=$search&type=video&key=$API_KEY&maxResults=10"
     );
-    decode(response);
+    return decode(response);
   }
   List<Video>decode(http.Response response) {
 
